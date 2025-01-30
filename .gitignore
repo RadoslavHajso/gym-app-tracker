@@ -1,0 +1,9 @@
+# Ignorovanie node_modules pre frontend aj backend
+my-app-frontend/node_modules/
+my-app-backend/node_modules/
+
+# Ignorovanie logov
+*.log
+
+# Ignorovanie .env súborov
+*.env
