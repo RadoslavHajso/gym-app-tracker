@@ -3,6 +3,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const pool = require("../config/db"); // Import pripojenia k DB
+const auth = require("../middleware/auth"); // Importujeme auth middleware
 const router = express.Router();
 
 // 🟢 POST /register – Registrácia užívateľa
@@ -71,6 +72,27 @@ router.post("/login", async (req, res) => {
         res.json({ message: "Login successful", token });
     } catch (error) {
         console.error("Error logging in:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+// 🟢 GET /me – Získanie údajov o prihlásenom používateľovi
+router.get("/me", auth, async (req, res) => {
+    try {
+        // Používame req.user, ktoré bolo nastavené v auth middleware
+        const userId = req.user.id;
+
+        // Získame údaje používateľa z databázy
+        const result = await pool.query('SELECT id, name, email FROM "user" WHERE id = $1', [userId]);
+
+        if (result.rows.length === 0) {
+            return res.status(400).json({ error: "User not found" });
+        }
+
+        // Vraciame údaje používateľa
+        res.json(result.rows[0]);
+    } catch (error) {
+        console.error("Error fetching user data:", error);
         res.status(500).json({ error: "Internal server error" });
     }
 });

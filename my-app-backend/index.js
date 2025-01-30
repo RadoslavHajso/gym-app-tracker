@@ -2,7 +2,7 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-require("dotenv").config(); // .env
+require("dotenv").config(); // Načítanie .env súboru
 const pool = require("./config/db"); // Import pripojenia k DB
 const usersRouter = require("./routes/users"); // Importovanie rout pre užívateľov
 const app = express();
