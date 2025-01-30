@@ -1,0 +1,8 @@
+# Ignorovanie node_modules
+node_modules/
+
+# Ignorovanie logov
+*.log
+
+# Ignorovanie .env súborov
+.env
