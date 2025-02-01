@@ -7,6 +7,7 @@ const pool = require("./config/db"); // Import pripojenia k DB
 const usersRouter = require("./routes/users"); // Importovanie rout pre užívateľov
 const app = express();
 const port = process.env.PORT || 5000;
+const rankingsRoutes = require("./routes/rankings");
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -28,6 +29,7 @@ app.get("/test-db", async (req, res) => {
 
 // Použitie rout pre užívateľov (registrácia, prihlásenie)
 app.use("/api/users", usersRouter);
+app.use("/rankings", rankingsRoutes);
 
 // Spustenie serveru
 app.listen(port, () => {
