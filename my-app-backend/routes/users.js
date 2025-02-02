@@ -3,6 +3,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const pool = require("../config/db");
 const auth = require("../middleware/auth");
+const multer = require("../config/multerConfig");
+const cloudinary = require("../config/cloudinaryConfig");
 const router = express.Router();
 
 // POST /register – Registrácia užívateľa
@@ -166,5 +168,41 @@ router.get("/", async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 });
+
+// POST /upload-profile-pic – Nahrávanie profilovej fotky
+router.post("/upload-profile-pic", auth, multer.single("profile_pic"), async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: "No file uploaded" });
+        }
+
+        // Nahraj obrázok na Cloudinary
+        const result = await cloudinary.uploader.upload(req.file.path, {
+            folder: "profile_pictures",
+            transformation: [{ width: 500, height: 500, crop: "limit" }],
+        });
+
+        // Ulož URL do databázy
+        await pool.query(
+            'UPDATE "user" SET profile_pic = $1 WHERE id = $2 RETURNING profile_pic',
+            [result.secure_url, req.user.id]
+        );
+
+        res.json({ message: "Profile picture uploaded successfully", profile_pic: result.secure_url });
+    } catch (error) {
+        console.error("Error uploading profile picture:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+// router.get("/test-cloudinary", async (req, res) => {
+//     try {
+//         const result = await cloudinary.api.ping();
+//         res.json({ message: "Cloudinary is working", result });
+//     } catch (error) {
+//         console.error("Cloudinary error:", error);
+//         res.status(500).json({ error: "Cloudinary error" });
+//     }
+// });
 
 module.exports = router;
