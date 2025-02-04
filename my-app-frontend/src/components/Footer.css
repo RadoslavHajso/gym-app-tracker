@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1c1c1c;
+    color: #fff;
+    padding: 10px 40px;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .footer-left {
+    font-size: 14px;
+    font-family: "Open Sans", serif;
+    font-weight: Medium 500;
+    text-decoration: underline 2px rgb(121, 0, 0);
+  }
+  
+  .footer-right {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .footer-icon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+    fill: #fff;
+  }
+  
+  .footer-icon:hover {
+    transform: scale(1.2);
+  }
