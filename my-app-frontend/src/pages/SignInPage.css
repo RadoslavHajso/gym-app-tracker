@@ -1,0 +1,85 @@
+.signin-container {
+    max-width: 500px;
+    margin: 200px auto;
+    padding: 20px;
+    background: #1c1c1c;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-family: "Roboto", serif;
+    padding-bottom: 25px;
+  }
+  
+  .signin-container h2 {
+    margin-bottom: 25px;
+  }
+  
+  .signin-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .signin-form label {
+    text-align: left;
+    margin-bottom: 5px;
+  }
+  
+  .signin-form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(228, 228, 228);
+  }
+ 
+  .signin-form button {
+    background: rgb(163, 3, 3);
+    color: white;
+    padding: 10px;
+    margin-left: 38.5%;
+    max-width: 25%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    margin-top: 10px;
+  }
+  
+  .signin-form button:hover {
+    background: darkred;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .sign-up{
+    margin-top: 20px;
+  }
+
+  .sign-up a{
+    margin-top: 380px;
+    color: white;
+    text-decoration: underline solid 2px rgb(163, 3, 3);
+  }
+  
+  @media (max-width: 890px) {
+    .signin-container {
+      min-width: 80%;
+      margin-left: 5%;
+      margin-right: 5%;
+      margin-top: 30%;
+      /* padding: 20px; */
+      background: #1c1c1c;
+      color: white;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      font-family: "Roboto", serif;
+      padding-bottom: 25px;
+    }
+  }
