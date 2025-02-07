@@ -1,6 +1,6 @@
 html, body {
   margin: 0;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   background: rgb(226, 226, 226);
   /* overflow-x: hidden; */
@@ -9,6 +9,7 @@ html, body {
 .page-container {
   min-height: 100vh;
   /* padding: 100px; */
+  display: flex;
   text-align: center;
 }
 
@@ -35,7 +36,7 @@ footer {
   margin-top: 70px; 
 } */
 
-@media (max-width: 890px) {
+/* @media (max-width: 890px) {
   .navbar {
     position: fixed;
     top: 0;
@@ -46,4 +47,4 @@ footer {
   /* .page-container {
     margin-top: 60px;
   } */
-}
+/* }  */
